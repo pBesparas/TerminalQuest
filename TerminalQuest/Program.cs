@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +9,19 @@ namespace TerminalQuest
 {
     internal class Program
     {
+
+        static void CharakterAnzeigen (string name, int leben, int maxLeben, int angriff, int level, int gold) // Charakterübersicht
+        {
+            Console.Clear();
+            Console.WriteLine("\n\t****** Charakterübersicht ******");
+            Console.WriteLine("\n\tName:     {0}", name);
+            Console.WriteLine("\tLeben:    {0}/{1}", leben, maxLeben);
+            Console.WriteLine("\tAngriff:  {0}", angriff);
+            Console.WriteLine("\tLevel:    {0}", level);
+            Console.WriteLine("\tGold:     {0}", gold);
+            Console.Write("\n\tDrücke Enter um weiterzukommen ");
+            Console.ReadLine();
+        }
         static void Main(string[] args)
         {
             // Variabeln
@@ -37,19 +49,10 @@ namespace TerminalQuest
                 
             }
 
-            // Charakterübersicht
-            Console.Clear();
-            Console.WriteLine("\n\t****** Charakterübersicht ******");
-            Console.WriteLine("\n\tName:     {0}", name);
-            Console.WriteLine("\tLeben:    {0}/{1}", leben, maxLeben);
-            Console.WriteLine("\tAngriff:  {0}", angriff);
-            Console.WriteLine("\tLevel:    {0}", level);
-            Console.WriteLine("\tGold:     {0}", gold);
-            Console.Write("\n\tDrücke Enter um weiter zu kommen weiterzukommen ");
-            Console.ReadLine();
+            CharakterAnzeigen(name, leben, maxLeben, angriff, level, gold);
 
             // Menu
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("\n\t****** Hauptmenü ******");
@@ -71,15 +74,7 @@ namespace TerminalQuest
                 switch (eingabe) 
                 {
                     case 1: // Charakter anzeigen
-                        Console.Clear();
-                        Console.WriteLine("\n\t****** Charakterübersicht ******");
-                        Console.WriteLine("\n\tName:     {0}", name);
-                        Console.WriteLine("\tLeben:    {0}/{1}", leben, maxLeben);
-                        Console.WriteLine("\tAngriff:  {0}", angriff);
-                        Console.WriteLine("\tLevel:    {0}", level);
-                        Console.WriteLine("\tGold:     {0}", gold);
-                        Console.Write("\n\tDrücke Enter um weiterzukommen ");
-                        Console.ReadLine();
+                        CharakterAnzeigen(name, leben, maxLeben, angriff, level, gold);
                         break;
                     case 2: //Abenteuer
                         Console.Clear();
@@ -97,7 +92,7 @@ namespace TerminalQuest
                         return;
                     default:
                         Console.Clear();
-                        Console.WriteLine("\n\tFehler: Es wurde keine Zahl eingegeben");
+                        Console.WriteLine("\n\tFehler: Ungültige Menüoption");
                         Console.Write("\n\tDrücke Enter um wieder zurückzukommen ");
                         Console.ReadLine();
                         break;
