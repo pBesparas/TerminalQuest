@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +14,7 @@ namespace TerminalQuest
         {
             // Variabeln
             string name = "";
-            int leben = 100, maxleben = 100, angriff = 15, level = 1, gold = 0;
+            int leben = 100, maxLeben = 100, angriff = 15, level = 1, gold = 0;
             bool checkName = true;
 
             // Wilkommen, Namens eingaben, Charakterübersicht
@@ -26,23 +28,81 @@ namespace TerminalQuest
                 checkName = false;
                 if(string.IsNullOrWhiteSpace(name))
                 { 
-                  Console.WriteLine("\n\tFehler: Gebe einen Namen ein");
+                  Console.Clear();
+                  Console.WriteLine("\n\tFehler: Es wurde kein Name eingegeben");
+                  Console.Write("\n\tDrücke Enter um wieder zurück zu kommen ");
                   Console.ReadLine(); 
                   checkName = true; 
                 }
                 
             }
+
             // Charakterübersicht
+            Console.Clear();
             Console.WriteLine("\n\t****** Charakterübersicht ******");
             Console.WriteLine("\n\tName:     {0}", name);
-            Console.WriteLine("\tLeben:    {0}/{1}", leben, maxleben);
+            Console.WriteLine("\tLeben:    {0}/{1}", leben, maxLeben);
             Console.WriteLine("\tAngriff:  {0}", angriff);
             Console.WriteLine("\tLevel:    {0}", level);
             Console.WriteLine("\tGold:     {0}", gold);
+            Console.Write("\n\tDrücke Enter um weiter zu kommen weiterzukommen ");
+            Console.ReadLine();
 
+            // Menu
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine("\n\t****** Hauptmenü ******");
+                Console.WriteLine("\n\t[1] Charakter anzeigen");
+                Console.WriteLine("\t[2] Abenteuer");
+                Console.WriteLine("\t[3] Inventar");
+                Console.WriteLine("\t[0] Spiel beenden");
+                Console.Write("\n\tGebe eine Zahl ein: ");
+                bool erfolgreich = int.TryParse(Console.ReadLine(), out int eingabe);
+                if (!erfolgreich) 
+                {
+                    Console.Clear();
+                    Console.WriteLine("\n\tFehler: Es wurde keine Zahl eingegeben ");
+                    Console.Write("\n\tDrücke Enter um wieder zurückzukommen ");
+                    Console.ReadLine();
+                    continue; 
+                }
 
-
-
+                switch (eingabe) 
+                {
+                    case 1: // Charakter anzeigen
+                        Console.Clear();
+                        Console.WriteLine("\n\t****** Charakterübersicht ******");
+                        Console.WriteLine("\n\tName:     {0}", name);
+                        Console.WriteLine("\tLeben:    {0}/{1}", leben, maxLeben);
+                        Console.WriteLine("\tAngriff:  {0}", angriff);
+                        Console.WriteLine("\tLevel:    {0}", level);
+                        Console.WriteLine("\tGold:     {0}", gold);
+                        Console.Write("\n\tDrücke Enter um weiterzukommen ");
+                        Console.ReadLine();
+                        break;
+                    case 2: //Abenteuer
+                        Console.Clear();
+                        Console.WriteLine("\n\tNoch nicht Fertig");
+                        Console.Write("\n\tDrücke Enter um wieder zurückzukommen ");
+                        Console.ReadLine();
+                        break;
+                    case 3: //Inventar
+                        Console.Clear();
+                        Console.WriteLine("\n\tNoch nicht Fertig");
+                        Console.Write("\n\tDrücke Enter um wieder zurückzukommen ");
+                        Console.ReadLine();
+                        break;
+                    case 0: //Spiel beenden
+                        return;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("\n\tFehler: Es wurde keine Zahl eingegeben");
+                        Console.Write("\n\tDrücke Enter um wieder zurückzukommen ");
+                        Console.ReadLine();
+                        break;
+                }
+            }
         }
     }
 }
