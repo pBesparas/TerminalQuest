@@ -22,8 +22,23 @@ namespace TerminalQuest
             Console.Write("\n\tDrücke Enter um weiterzukommen ");
             Console.ReadLine();
         }
+
+        static int BerechneHeilung (int leben,int maxLeben, int heilung)
+        {
+            int endLeben, rechnung;
+            endLeben = leben + heilung;
+            if (endLeben > maxLeben)
+            {
+                rechnung = endLeben - 100;
+                endLeben -= rechnung;
+            }
+
+            return endLeben;
+        }
+
         static void Main(string[] args)
         {
+
             // Variabeln
             string name = "";
             int leben = 100, maxLeben = 100, angriff = 15, level = 1, gold = 0;
